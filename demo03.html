@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>一体化音乐播放器</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/css/meethigher-font.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        body {
+            color:#000;
+        }
+    </style>
+</head>
+<body>
+<ul id="musit-list">
+
+</ul>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/layer/layer.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/template-web.js"></script>
+<script src="js/index.js"></script>
+
+<script id="template" type="text/html">
+    <% for(let i=0;i<content.length;i++){ %>
+    <li><%=content[i].province%></li>
+    <% } %>
+</script>
+<script>
+    let data = {
+        content: [
+            {province: '四川', city: ['成都', '绵阳', '自贡']},
+            {province: '广东', city: ['广州', '东莞', '佛山']},
+            {province: '海南', city: ['海口', '三亚']}
+        ]
+    };
+    console.log(data);
+    let html = template("template", data);
+    $("#musit-list").html(html);
+</script>
+</body>
+</html>

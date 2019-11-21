@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div.progress {
+            width:500px;
+            height:10px;
+            border-radius:10px;
+            background-color: pink;
+            margin:10px auto;
+            position:relative;
+        }
+        div.dot {
+            height:10px;
+            width:10px;
+            border-radius:10px;
+            background-color: blue;
+            position:absolute;
+            margin-left:-5px;
+            left:0;
+        }
+        div.volume {
+            width:500px;
+            height:10px;
+            border-radius:10px;
+            background-color: pink;
+            margin:10px auto;
+            position:relative;
+        }
+        div.volume-dot {
+            height:10px;
+            width:10px;
+            border-radius:10px;
+            background-color: blue;
+            position:absolute;
+            margin-left:-5px;
+            left:100%;
+        }
+    </style>
+</head>
+<body>
+<button>播放</button>
+<div class="progress">
+    <div class="dot"></div>
+</div>
+<div class="volume"><div class="volume-dot"></div></div>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/jquery.min.js"></script>
+<script>
+    let music = "http://ws.stream.qqmusic.qq.com/C400000a2bMl33mXkU.m4a?guid=232680296&vkey=119F0212436C94D6442668B9F27D9BCD86FD22ECF6F75BF96F177EB184811FA454BE6174C28F8ACD54F56542E52CA1355937BF931592FB57&uin=0&fromtag=66";
+
+    let $button = $("button");
+
+    let audio = $("<audio src=" + music + "></audio>")[0];
+    audio.loop=true;
+
+    $button.on("click", function () {
+        console.log(audio.duration);
+        let text = $button.text();
+        if (text === "播放") {
+            audio.play();
+            $button.text("暂停");
+        }
+        else{
+            audio.pause();
+            $button.text("播放");
+        }
+    });
+    $(document).on("keydown",function (e){
+        console.log(e.which);
+    });
+    audio.ontimeupdate=function (){
+        let percent=(audio.currentTime/audio.duration)*100;
+        $(".dot").css("left",percent+"%");
+    };
+    $(".progress").on("click",function (e){
+        console.log(e)
+        console.log(e.offsetX);
+        console.log($(this).width());
+        let percent=e.offsetX/$(this).width();
+        audio.currentTime=audio.duration*percent;
+    });
+
+    // $(".volume").on("click",function (e){
+    //     let percent=e.offsetX/$(".volume").width();
+    //     audio.volume=percent;
+    //     $(".volume-dot").css("left",percent*100+"%");
+    // })
+    let down=false;
+    $(".volume").mousedown(function (e){
+        down=true;
+        console.log("按下");
+    });
+    $(".volume").mousemove(function (e){
+        if(down){
+            console.log(e.offsetX);
+            audio.volume=e.offsetX/$(this).width();
+            $(".volume-dot").css("left",e.offsetX/$(this).width()*100+"%");
+            console.log("移动");
+        }
+    });
+    $(document).mouseup(function (e){
+        down=false;
+        audio.volume=e.offsetX/$(this).width();
+        $(".volume-dot").css("left",e.offsetX/$(this).width()*100+"%");
+        console.log("松开");
+    });
+
+</script>
+</body>
+</html>

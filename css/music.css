@@ -1,0 +1,726 @@
+/*========reset css===============*/
+*,
+*::before,
+*::after {
+    /*所有的标签和伪元素都选中*/
+    margin: 0;
+    padding: 0;
+    /*移动端常用布局是非固定像素布局*/
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    /*点击高亮效果清除*/
+    tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-size: 20px;
+    font-family: "Microsoft Yahei", sans-serif;
+    color: #fff;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    transition: all .3s ease;
+}
+
+input,
+textarea {
+    border: none;
+    outline: none;
+    /*不允许改变尺寸*/
+    resize: none;
+    /*元素的外观 none没有任何样式*/
+    -webkit-appearance: none;
+}
+
+/*===============common css===========*/
+/*清除浮动*/
+.clearFix::before,
+.clearFix::after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    height: 0;
+    line-height: 0;
+    clear: both;
+}
+
+/*修改layer插件的默认颜色*/
+.layui-layer-setwin .layui-layer-close2 {
+    transition: none;
+}
+
+.layui-layer-dialog {
+    background-color: #13172F !important;
+    border: 1px solid #fff !important;
+    border-radius: 10px !important;
+}
+
+/*===============div css===========*/
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #13172F;
+    z-index: -1;
+}
+
+/*滚动条样式*/
+.meethigher-scroll::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 5px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+
+.meethigher-scroll::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    background-color: #13172F;
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+}
+
+.meethigher-scroll::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: #EDEDED;
+}
+
+/*header部分==================*/
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    border-bottom: 2px solid #fff;
+}
+
+header .logo {
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    display: inline-block;
+}
+
+header .logo a {
+    color: #fff;
+}
+
+header .menu {
+    display: inline-block;
+    float: right;
+}
+
+header .menu li {
+    padding: 0 10px;
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+
+header .menu li.active a {
+    color: gold;
+}
+
+header .menu li a {
+    color: #fff;
+}
+
+.set {
+    float: right;
+    margin-right: 10px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+}
+
+/*main部分=======================*/
+main {
+    padding: 50px 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+#menu1, #menu2, #menu3, #menu4 {
+    display: none;
+    height: 100%;
+    overflow: hidden;
+}
+
+#menu1 {
+
+}
+
+#menu1 .search-content {
+    padding-top: 10px;
+    padding-bottom: 50px;
+    height: 100%;
+    overflow: auto;
+}
+
+#menu1 .search-content ul li {
+    padding: 10px 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    cursor: pointer;
+}
+
+#menu1 .search-content ul li.playing {
+    color: gold;
+}
+
+#menu1 .search-content span {
+    text-align: center;
+    height: 100%;
+}
+
+#menu1 .search-content .num {
+    width: 20%;
+    display: inline-block;
+}
+
+#menu1 .search-content .num.playing {
+    background-image: url("../images/wave.gif");
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+#menu1 .search-content .song {
+    width: 40%;
+    font-size: 16px;
+    display: inline-block;
+}
+
+#menu1 .search-content .singer {
+    width: 40%;
+    font-size: 16px;
+    display: inline-block;
+}
+
+#menu1 .search-content .btn-more {
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 5px;
+}
+
+#menu1 .search-content .btn-delete {
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 5px;
+}
+
+#menu2 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#menu2 .search-content {
+    height:100%;
+    overflow:auto;
+}
+
+#menu2 .detail {
+
+}
+
+#menu2 #myMusicLyric li {
+    text-align: center;
+    padding: 10px 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+#menu2 #myMusicLyric li.played {
+    color:gold;
+}
+
+#menu2 .detail .pic {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    margin: 50px auto 50px;
+    overflow: hidden;
+}
+
+#menu2 .detail .pic.playing {
+    animation: myRotate 4s linear infinite;
+}
+
+@keyframes myRotate {
+    0% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#menu2 .detail .pic img {
+    width: 128px;
+    height: 128px;
+}
+
+#menu2 .detail .song,
+#menu2 .detail .singer,
+#menu2 .detail .album {
+    padding: 10px 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+#menu3 {
+
+}
+
+#menu3 .search {
+    position: relative;
+    text-align: center;
+    margin: 10px auto 0;
+    width: 500px;
+
+}
+
+#menu3 .search-history {
+    position: absolute;
+    width: 100%;
+    padding: 0 25px;
+    display: none;
+    background-color: #13172F;
+}
+
+#menu3 .search-history li {
+    width: 100%;
+    cursor: pointer;
+    background-color: #13172F;
+}
+
+#menu3 .search-history li.active {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+#menu3 input {
+    font-size: 20px;
+    padding: 4px 25px;
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    color: #fff;
+}
+
+#menu3 .source {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+#menu3 .source span {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    -webkit-background-size: 16px 16px;
+    background-size: 16px 16px;
+    background-image: url("../images/tencent.ico");
+}
+
+#menu3 .go {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+#menu3 .source-list {
+    position: absolute;
+    top: 35px;
+    padding-top: 10px;
+    left: 0;
+    width: 100%;
+    display: none;
+    background-color: #13172F;
+    border-radius: 10px;
+    opacity: .9;
+}
+
+#menu3 .source-list li {
+    float: left;
+    text-align: center;
+    width: 20%;
+    cursor: pointer;
+}
+
+#menu3 .source-list li span {
+    display: block;
+}
+
+#menu3 .source-list li span:first-child {
+    width: 16px;
+    height: 16px;
+    margin: 0 auto;
+    -webkit-background-size: 16px 16px;
+    background-size: 16px 16px;
+}
+
+#menu3 .source-list li span:nth-child(2) {
+    font-size: 16px;
+}
+
+#menu3 .source-list .tencent span:first-child {
+    background-image: url("../images/tencent.ico");
+}
+
+#menu3 .source-list .netease span:first-child {
+    background-image: url("../images/netease.ico");
+}
+
+#menu3 .source-list .kugou span:first-child {
+    background-image: url("../images/kugou.ico");
+}
+
+#menu3 .source-list .xiami span:first-child {
+    background-image: url("../images/xiami.ico");
+}
+
+#menu3 .source-list .baidu span:first-child {
+    background-image: url("../images/baidu.ico");
+}
+
+#menu3 .search-content {
+    padding-top: 10px;
+    padding-bottom: 50px;
+    height:100%;
+    overflow: auto;
+}
+
+#menu3 .search-content ul li {
+    padding: 10px 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    cursor: pointer;
+}
+
+#menu3 .search-content .btn-more {
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 5px;
+}
+
+#menu3 .search-content span {
+    text-align: center;
+    height: 100%;
+}
+
+#menu3 .search-content .num {
+    width: 20%;
+    display: inline-block;
+    /*background-color: red;*/
+}
+
+#menu3 .search-content .song {
+    width: 40%;
+    font-size: 16px;
+    display: inline-block;
+    /*background-color: orange;*/
+}
+
+#menu3 .search-content .singer {
+    width: 40%;
+    font-size: 16px;
+    display: inline-block;
+    /*background-color: yellow;*/
+}
+
+#menu4 {
+    display: none;
+    font-size:50px;
+    text-align:center;
+}
+
+/*footer部分==========================*/
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    height: 50px;
+    width: 100%;
+    border-top: 2px solid #fff;
+}
+
+footer ul {
+    display: inline-block;
+}
+
+footer ul.first li {
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+}
+
+footer ul li span {
+    display: inline-block;
+}
+
+footer .btn-prev {
+    width: 19px;
+    height: 20px;
+    background-image: url("../images/player.png");
+    background-repeat: no-repeat;
+    background-position: 0 -29px;
+}
+
+footer .player {
+    width: 21px;
+    height: 29px;
+    margin-top: 6px;
+    background-image: url("../images/player.png");
+    background-repeat: no-repeat;
+}
+
+footer .play {
+    background-position: 0 0;
+}
+
+footer .pause {
+    background-position: -28px 0;
+}
+
+footer .btn-next {
+    width: 19px;
+    height: 20px;
+    background-image: url("../images/player.png");
+    background-repeat: no-repeat;
+    background-position: 0 -51px;
+}
+
+footer .play-model {
+    width: 26px;
+    height: 25px;
+    background-image: url("../images/player.png");
+    background-repeat: no-repeat;
+}
+
+footer .play-model.loop {
+    background-position: 0 -230px;
+}
+
+footer .play-model.turn {
+    background-position: 0 -203px;
+}
+
+footer .progress {
+    position: relative;
+    display: inline-block;
+    width: 360px;
+    height: 5px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, .5);
+    vertical-align: middle;
+}
+
+footer .cur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 0;
+    height: 5px;
+    border-radius: 10px;
+    background-color: #fff;
+    vertical-align: middle;
+}
+
+footer .dot {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    margin-left: -4px;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #fff;
+    vertical-align: middle;
+}
+
+footer .volume-progress .dot {
+    left: 100%;
+}
+
+footer .volume-progress .cur {
+    width: 100%;
+}
+
+footer .volume {
+    /*display:none;*/
+}
+
+footer .volume-bar {
+    width: 26px;
+    height: 21px;
+    background-image: url("../images/player.png");
+    background-repeat: no-repeat;
+}
+
+footer .volume-bar.on {
+    background-position: 0 -143px;
+}
+
+footer .volume-bar.off {
+    background-position: 0 -181px;
+}
+
+footer .volume-progress {
+    position: relative;
+    width: 70px;
+    height: 5px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, .5);
+    vertical-align: middle;
+}
+
+footer ul.second {
+    float: right;
+}
+
+footer ul.second li {
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+}
+
+@media screen and (min-width: 768px) {
+    header .logo {
+        margin-left: 50px;
+    }
+
+    header .menu {
+        margin-right: 50px;
+    }
+
+    .set {
+        display: none;
+    }
+
+    footer ul.first {
+        margin-left: 50px;
+    }
+
+    footer ul.second {
+        margin-right: 50px;
+    }
+
+    #menu3 input {
+        width: 450px;
+    }
+
+    #menu3 .search-content {
+        width: 760px;
+        margin: 0 auto;
+    }
+
+    #menu1 .search-content {
+        width: 760px;
+        margin: 0 auto;
+    }
+
+    #menu2 .search-content {
+        width: 70%;
+    }
+
+    #menu2 .detail {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 30%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header .logo {
+        margin-left: 10px;
+    }
+
+    header .menu {
+        position: absolute;
+        width: 100%;
+        top: 50px;
+        right: 0;
+        background-color: rgba(0, 0, 0, .7);
+        z-index: 9999;
+        display: none;
+    }
+
+    header .menu li {
+        float: none;
+    }
+
+    .set {
+        display: inline-block;
+        position: relative;
+    }
+
+    footer {
+        text-align: center;
+    }
+
+    footer ul.first {
+        margin-left: 0;
+    }
+
+    footer ul.second {
+        display: none;
+    }
+
+    #menu3 .search {
+        width: 80%;
+    }
+
+    #menu3 input {
+        width: 100%;
+    }
+
+    #menu3 .search-content {
+        width: 100%;
+    }
+
+    #menu1 .search-content {
+        width: 100%;
+    }
+
+    #menu2 .search-content {
+        width: 100%;
+    }
+
+    #menu2 .detail {
+        display: none;
+    }
+}

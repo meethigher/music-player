@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button class="btn">搜索</button>
+<ul></ul>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/jquery.min.js"></script>
+<script>
+    let $ul=$("ul");
+    let $button=$(".btn");
+    $button.on("click",function (){
+        let $li=$("<li></li>").text("第1次搜索结果");
+        $ul.append($li);
+        $ul.append("<button>加载更多</button>");
+    });
+    $ul.on("click","button",function (){
+        let length=$("ul li").length;
+        if(length>=10){
+            $(this).text("没有更多内容了，亲");
+        }else{
+            $(this).before("<li>第"+(length+1)+"次搜索结果</li>");
+            console.log("加载第"+(length+1)+"次结果");
+        }
+    });
+
+
+
+</script>
+</body>
+</html>

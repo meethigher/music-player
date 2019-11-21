@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li.playing {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<button>播放</button>
+<ul></ul>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/jquery.min.js"></script>
+<script>
+    let lyric = "[ti:悬溺]\n" +
+        "    [ar:葛东琪]\n" +
+        "    [al:第二街区]\n" +
+        "    [by:]\n" +
+        "    [offset:0]\n" +
+        "    [00:01.74]悬溺 - 葛东琪\n" +
+        "        [00:02.67]词：葛东琪\n" +
+        "        [00:02.80]曲：葛东琪\n" +
+        "        [00:02.93]编曲：葛东琪\n" +
+        "        [00:03.10]录音师：葛东琪\n" +
+        "        [00:03.29]混音师：葛东琪\n" +
+        "        [00:04.17]制作人：葛东琪\n" +
+        "        [00:04.37]推广：刘维刚\n" +
+        "        [00:04.54]发行：湖南音讯影视传媒有限公司\n" +
+        "        [00:31.65]我主张制止不了就放任\n" +
+        "        [00:38.34]这欲望与绝望之争\n" +
+        "        [00:44.79]余温她却喜欢过门\n" +
+        "        [00:50.53]临走呢\n" +
+        "        [00:52.30]还随手关了灯\n" +
+        "        [00:56.59]So funny\n" +
+        "        [00:57.33]Ya i ya i ya i ya i ya i ya i ya\n" +
+        "        [01:00.46]Ya i ya i ya i ya i\n" +
+        "        [01:03.74]Ya i ya i ya i ya i ya i ya i ya\n" +
+        "        [01:06.93]It's so funny ya i ya i\n" +
+        "        [01:09.83]Ya i ya i ya i ya i ya i ya i ya\n" +
+        "        [01:14.02]Ya i ya i ya i ya i\n" +
+        "        [01:16.39]It's so funny ya i ya i ya i ya i ya\n" +
+        "        [01:20.37]Ya i ya i ya i ya i\n" +
+        "        [01:51.61]我主张克制不了就放任\n" +
+        "        [01:58.26]悬上该有的天真\n" +
+        "        [02:04.79]起伏在于喜怒哀乐\n" +
+        "        [02:10.39]松了绳\n" +
+        "        [02:12.32]大不了无人问\n" +
+        "        [02:17.11]Ya i ya i ya i ya i ya i ya i ya\n" +
+        "        [02:20.52]Ya i ya i ya i ya i\n" +
+        "        [02:23.71]Ya i ya i ya i ya i ya i ya i ya\n" +
+        "        [02:27.10]It's so funny ya i ya i\n" +
+        "        [02:30.32]Ya i ya i ya i ya i ya i ya i ya\n" +
+        "        [02:33.88]Ya i ya i ya i ya\n" +
+        "        [02:36.68]It's so funny ya i ya i ya i ya i ya\n" +
+        "        [02:40.58]Ya i ya i ya i ya\n" +
+        "        [02:42.46]有什么话要说";
+
+    let oLrc = {
+        ti: "",//歌曲名
+        ar: "",//歌手
+        al: "",//专辑名
+        ms: []//歌词数组 {t:时间，c:歌词}
+    };
+    decLyric(lyric);
+
+    function decLyric(lrc) {
+        if (lrc === "") return;
+        let lrcs = lrc.split("\n");
+        for (let i in lrcs) {
+            lrcs[i] = lrcs[i].trim();
+            let t = lrcs[i].substring(lrcs[i].indexOf("[") + 1, lrcs[i].indexOf("]"));
+            let s = t.split(":");
+            if (isNaN(parseInt(s[0]))) {
+                for (let i in oLrc) {
+                    if (i != "ms" && i == s[0].toLowerCase()) {
+                        oLrc[i] = s[1];
+                    }
+                }
+            } else {
+                let arr = lrcs[i].match(/\[(\d+:.+?)\]/g);//提取时间字段，类似于这样的[01:01.08][02:23.81][04:13.30]什么鬼魅传说
+                let start = 0;
+                for (let k in arr) {
+                    start += arr[k].length;
+                }
+                let content = lrcs[i].substring(start);
+                for (let k in arr) {
+                    let t = arr[k].substring(1, arr[k].length - 1);
+                    let s = t.split(":");
+                    oLrc["ms"].push({
+                        t: (parseFloat(s[0]) * 60 + parseFloat(s[1])).toFixed(2),
+                        c: content
+                    });
+                }
+            }
+        }
+        oLrc["ms"].sort(function (a, b) {
+            return a.t - b.t;
+        });
+        for(let i in oLrc){
+            console.log(i,":",oLrc[i]);
+        }
+    }
+    console.log(oLrc);
+    for(let i in oLrc["ms"]){
+        $li=$("<li></li>");
+        $li.text(oLrc["ms"][i]["c"]);
+        $("ul").append($li);
+    }
+    let audio = new Audio();
+    audio.src = "http://ws.stream.qqmusic.qq.com/M500000a2bMl33mXkU.mp3?guid=2096561417&vkey=DD65D5FF6CC4393116CA0B2778812DDF60255D1D775E4442FA1318CADA2905EC30742728D2C78C07A7C633A2F14F1B39DE7ABE1FDA521B5A&uin=0&fromtag=66";
+    $("button").on("click", function () {
+        audio.play();
+        console.log(audio.duration);
+    });
+    let current=0;
+    let i=0;
+    audio.ontimeupdate=function (){
+        current=audio.currentTime+1;
+        if(i>=oLrc["ms"].length) return;
+        if(current>oLrc["ms"][i]["t"]){
+            renderLiLi(i);
+            i++;
+        }
+
+    };
+    audio.onended=function (){
+        i=0;
+        noRenderLiLi();
+    };
+    function renderLiLi(i){
+        console.log("渲染第",i,"句歌词");
+        let $li=$("ul").find("li");
+        $li.each(function (index,ele){
+            if(index==i){
+                $(ele).addClass("playing");
+            }
+        });
+    }
+    function noRenderLiLi() {
+        let $li=$("ul").find("li");
+        $li.each(function (index,ele){
+            $(ele).removeClass("playing");
+        });
+    }
+</script>
+</body>
+</html>

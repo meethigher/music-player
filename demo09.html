@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    var person = [
+        { id: 0, name: "小明" },
+        { id: 1, name: "小张" },
+        { id: 2, name: "小李" },
+        { id: 4, name: "小孙" },
+    ];
+
+    var obj = { id: 3, name: "小孙" };
+    var obj1 = { id: 3, name: "大孙" };
+
+    // person = person.reduce((cur, next) => {
+    //     obj[next.id] ? "" : obj[next.id] = true && cur.push(next);
+    //     return cur;
+    // }, []) //设置cur默认类型为数组，并且初始值为空的数组
+    // console.log(person);
+    function addEle(obj){
+        let repeat=false;
+        person.forEach(function (value,index){
+            if(value.id===obj.id){
+                repeat=true;
+            }
+        });
+        if(repeat)
+            return;
+        person.push(obj);
+    }
+    addEle(obj);
+    addEle(obj1);
+    // console.log(person);
+</script>
+</body>
+</html>

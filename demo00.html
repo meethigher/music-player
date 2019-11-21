@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <style>
+        .outer {
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        ul {
+            width: 500px;
+        }
+
+        li {
+            float: left;
+            background-color: blue;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div>播放源<label><input type="radio" name="music" value="tencent">QQ音乐</label>
+    <label><input type="radio" name="music" value="netease">网易云音乐</label><label><input type="radio" name="music"
+                                                                                       value="kugou">酷狗音乐</label><label><input
+            type="radio" name="music" value="xiami">虾米音乐</label><label><input type="radio" name="music"
+                                                                              value="baidu">百度音乐</label>
+</div>
+<div>歌名或者歌手:<input class="search" type="text" value="说好不哭"></div>
+<div>数量：<input class="num" type="text" value="1"></div>
+<button>搜索</button>
+<br>
+<button class="lyric">获取音乐歌词</button>
+
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@12/js/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@12/js/iscroll.min.js"></script>
+<script>
+    $(function () {
+        let arr = [
+            {
+                album: "说好不哭（with 五月天阿信）",
+                artist: ["周杰伦"],
+                id: "001qvvgF38HVc4",
+                lyric_id: "001qvvgF38HVc4",
+                name: "说好不哭（with 五月天阿信）",
+                pic_id: "002gBTVk4JEE2T",
+                source: "tencent",
+                url_id: "001qvvgF38HVc4",
+            },
+        ];
+        let obj = arr[0];
+        $(".lyric").on("click", function () {
+            getLyric(obj);
+        });
+
+        function getLyric(music) {
+            $.ajax({
+                type: "POST",
+                url: "api.php",
+                data: "types=lyric&id=" + music.lyric_id + "&source=" + music.source,
+                dataType : "jsonp",
+                success: function(jsonData){
+                    console.log(jsonData);
+                },   //success
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log("error");
+                },
+                complete:function (){
+                    console.log("执行完毕");
+                }
+            });
+        }
+    });
+    $(function () {
+        $("button").on("click", function () {
+            let source = $("input[name='music']:checked").val();
+            let text = $(".search").val();
+            let num = $(".num").val();
+            getContent(source, text, num);
+        });
+
+        function getContent(source, text, num) {
+            $.ajax({
+                type: "POST",
+                url: "api.php",
+                data: "types=search&count=" + num + "&source=" + source + "&pages=" + 1 + "&name=" + text,
+                dataType: "jsonp",
+                complete: function (XMLHttpRequest, textStatus) {
+                    console.log("结束");
+                },
+                success: function (jsonData) {
+                    console.log("返回音乐信息");
+                    console.log(jsonData);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log("error");
+                }
+            });
+        }
+
+        //获取音乐真实链接
+        function getSong(music, source) {
+            $.ajax({
+                type: "POST",
+                url: "api.php",
+                data: "types=url&id=" + music.url_id + "&source=" + source,
+                dataType: "jsonp",
+                async: "false",
+                complete: function () {
+                    // console.log("正在获取音乐链接");
+                },
+                success: function (data) {
+                    console.log("成功获取音乐链接");
+                    console.log(data.url);
+                },
+                error: function () {
+                    console.log("error");
+                }
+            });
+        }
+
+        //获取音乐真实海报
+        function getPic(music, source) {
+            $.ajax({
+                type: "POST",
+                url: "api.php",
+                data: "types=pic&id" + music.pic_id + "&source=" + source,
+                dataType: "jsonp",
+                complete: function () {
+                    console.log("正在...");
+                },
+                success: function (data) {
+                    console.log("获取海报链接")
+                    console.log(data.url);
+                }, error: function () {
+                    console.log("error");
+                }
+            })
+        }
+
+        //获取音乐的歌词
+        function getLyric(music, source) {
+            $.ajax({
+                type: "POST",
+                url: "api.php",
+                data: "types=lyric&id" + music.lyric_id + "&source=" + source,
+                dataType: "jsonp",
+                complete: function () {
+                    console.log("正在...");
+                },
+                success: function (data) {
+                    console.log("获取歌词")
+                    console.log(data);
+                }, error: function () {
+                    console.log("error");
+                }
+            })
+        }
+
+    });
+</script>
+<script>
+
+</script>
+</body>
+</html>

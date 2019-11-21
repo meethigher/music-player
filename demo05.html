@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul {
+            display:none;
+        }
+        ul li {
+            background-color: orange;
+        }
+        ul li.active {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<input type="search"><button>搜索</button>
+<ul></ul>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/jquery.min.js"></script>
+<script>
+let arr=["说好不哭","从别后","勾指起誓"];
+for(let i=0;i<arr.length;i++){
+    $("ul").append("<li>"+arr[i]+"</li>");
+}
+let content;
+$("button").on("click",function (){
+    content=$("input").val();
+    console.log("搜索" + content);
+});
+let current=-1;
+function keyDownEvent(e){
+    $("ul").show();
+    if(e.keyCode===40||e.which===40){
+        if(current>=$("ul li").length-1){
+            current=0;
+        }else{
+            current++;
+        }
+        $("ul li").each(function (index,ele){
+            if(index===current){
+                $(ele).addClass("active");
+            }else{
+                $(ele).removeClass("active");
+            }
+        });
+        $("input").val($(".active").text());
+        console.log(current);
+    }
+    if(e.keyCode===38||e.which===38){
+        if(current<=0){
+            current=$("ul li").length-1;
+        }else{
+            current--;
+        }
+        $("ul li").each(function (index,ele){
+            if(index===current){
+                $(ele).addClass("active");
+            }else{
+                $(ele).removeClass("active");
+            }
+        });
+        $("input").val($(".active").text());
+        console.log(current);
+    }
+    if(e.keyCode===13||e.which===13){
+        $("button").click();
+        $("ul").hide();
+        current=0;
+    }
+}
+$("input").on("keydown",function (e){
+    console.log("按下");
+    keyDownEvent(e);
+});
+</script>
+</body>
+</html>

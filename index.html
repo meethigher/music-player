@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>音乐播放区</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/css/meethigher-font.css">
+    <link rel="stylesheet" href="css/music.css">
+</head>
+<body>
+<header>
+    <div class="logo"><a href="https://meethigher.top"><span class="fa fa-heart"></span>言成言成啊<span
+            class="fa fa-heart"></span></a></div>
+    <span class="set fa fa-window-maximize"></span>
+    <ul class="menu clearFix">
+        <li class="active"><a href="#menu1"><span class="fa fa-music"></span>&nbsp;我的歌单</a></li>
+        <li><a href="#menu2"><span class="fa fa-list"></span>&nbsp;歌词</a></li>
+        <li><a href="#menu3"><span class="fa fa-search"></span>&nbsp;音乐搜索</a></li>
+        <li><a href="#menu4"><span class="fa fa-diamond"></span>&nbsp;音乐解析</a></li>
+    </ul>
+</header>
+<main class="main">
+    <div id="menu1">
+        <div class="search-content meethigher-scroll">
+            <ul id="myMusicList"></ul>
+        </div>
+    </div>
+    <div id="menu2">
+        <div class="search-content meethigher-scroll">
+            <ul id="myMusicLyric"><li>请选择一首歌哦，亲❤~</li></ul>
+        </div>
+        <div class="detail">
+            <div class="pic playing"></div>
+            <div class="song"><span class="songContent"></span></div>
+            <div class="singer"><span class="singerContent"></span></div>
+            <div class="album"><span class="albumContent"></span></div>
+        </div>
+    </div>
+    <div id="menu3">
+        <div class="search">
+            <input type="search" placeholder="歌名或者歌手">
+            <div class="source"><span></span></div>
+            <div class="go"><span class="fa fa-search"></span></div>
+            <ul class="search-history clearFix"></ul>
+            <ul class="source-list clearFix">
+                <li class="tencent"><span></span><span>QQ音乐</span></li>
+                <li class="netease"><span></span><span>网易云音乐</span></li>
+                <li class="kugou"><span></span><span>酷狗音乐</span></li>
+                <li class="xiami"><span></span><span>虾米音乐</span></li>
+                <li class="baidu"><span></span><span>百度音乐</span></li>
+            </ul>
+        </div>
+        <div class="search-content meethigher-scroll">
+            <ul id="music-list"></ul>
+        </div>
+    </div>
+    <div id="menu4">明天要交作业了，先完成前面这些功能吧</div>
+</main>
+<footer class="footer">
+    <ul class="first clearFix">
+        <li><span class="btn-prev"></span></li>
+        <li><span class="player play"></span></li>
+        <li><span class="btn-next"></span></li>
+        <li><span class="play-model turn"></span></li>
+    </ul>
+    <ul class="second clearFix">
+        <li><span class="progress"><span class="cur"></span><span class="dot"></span></span></li>
+        <li class="volume"><span class="volume-bar on"></span>&nbsp;<span class="volume-progress"><span class="cur"></span><span
+                class="dot"></span></span></span></li>
+    </ul>
+</footer>
+<aside class="aside"></aside>
+<div id="particles-js"></div>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/layer/layer.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/template-web.js"></script>
+<script src="js/music.js"></script>
+<script id="template" type="text/html">
+    <% for(let i = 0; i < content.length; i++){ %>
+    <li><span class="num"></span><span class="song"><%=content[i].name%></span><span class="singer"><%=content[i].artist[0]%></span></li>
+    <% } %>
+</script>
+</body>
+</html>
