@@ -197,7 +197,7 @@ main {
 }
 
 #menu1 .search-content .num.playing {
-    background-image: url("../images/wave.gif");
+    background-image: url("https://meethigher.top/images/wave.gif");
     background-repeat: no-repeat;
     background-position: left center;
 }
@@ -343,7 +343,7 @@ main {
     display: inline-block;
     -webkit-background-size: 16px 16px;
     background-size: 16px 16px;
-    background-image: url("../images/tencent.ico");
+    background-image: url("https://meethigher.top/images/tencent.ico");
 }
 
 #menu3 .go {
@@ -391,23 +391,23 @@ main {
 }
 
 #menu3 .source-list .tencent span:first-child {
-    background-image: url("../images/tencent.ico");
+    background-image: url("https://meethigher.top/images/tencent.ico");
 }
 
 #menu3 .source-list .netease span:first-child {
-    background-image: url("../images/netease.ico");
+    background-image: url("https://meethigher.top/images/netease.ico");
 }
 
 #menu3 .source-list .kugou span:first-child {
-    background-image: url("../images/kugou.ico");
+    background-image: url("https://meethigher.top/images/kugou.ico");
 }
 
 #menu3 .source-list .xiami span:first-child {
-    background-image: url("../images/xiami.ico");
+    background-image: url("https://meethigher.top/images/xiami.ico");
 }
 
 #menu3 .source-list .baidu span:first-child {
-    background-image: url("../images/baidu.ico");
+    background-image: url("https://meethigher.top/images/baidu.ico");
 }
 
 #menu3 .search-content {
@@ -490,7 +490,7 @@ footer ul li span {
 footer .btn-prev {
     width: 19px;
     height: 20px;
-    background-image: url("../images/player.png");
+    background-image: url("https://meethigher.top/images/player.png");
     background-repeat: no-repeat;
     background-position: 0 -29px;
 }
@@ -499,7 +499,7 @@ footer .player {
     width: 21px;
     height: 29px;
     margin-top: 6px;
-    background-image: url("../images/player.png");
+    background-image: url("https://meethigher.top/images/player.png");
     background-repeat: no-repeat;
 }
 
@@ -514,7 +514,7 @@ footer .pause {
 footer .btn-next {
     width: 19px;
     height: 20px;
-    background-image: url("../images/player.png");
+    background-image: url("https://meethigher.top/images/player.png");
     background-repeat: no-repeat;
     background-position: 0 -51px;
 }
@@ -522,7 +522,7 @@ footer .btn-next {
 footer .play-model {
     width: 26px;
     height: 25px;
-    background-image: url("../images/player.png");
+    background-image: url("https://meethigher.top/images/player.png");
     background-repeat: no-repeat;
 }
 
@@ -584,7 +584,7 @@ footer .volume {
 footer .volume-bar {
     width: 26px;
     height: 21px;
-    background-image: url("../images/player.png");
+    background-image: url("https://meethigher.top/images/player.png");
     background-repeat: no-repeat;
 }
 

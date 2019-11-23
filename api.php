@@ -112,22 +112,7 @@ switch($types)   // 根据请求的 Api，执行相应操作
         break;
         
     default:
-        if(!defined('DEBUG') || DEBUG !== true) {   // 非调试模式
-            echo '<p>Api 调试模式已关闭</p>';
-        } else {
-            echo '<p><font color="red">您已开启 Api 调试功能，正常使用时请在 api.php 中关闭该选项！</font></p><br>';
-            
-            echo '<p>PHP 版本：'.phpversion().' （本程序要求 PHP 5.4+）</p><br>';
-            
-            echo '<p>服务器函数检查</p>';
-            echo '<p>curl_exec: '.checkfunc('curl_exec',true).' （用于获取音乐数据）</p>';
-            echo '<p>file_get_contents: '.checkfunc('file_get_contents',true).' （用于获取音乐数据）</p>';
-            echo '<p>json_decode: '.checkfunc('json_decode',true).' （用于后台数据格式化）</p>';
-            echo '<p>hex2bin: '.checkfunc('hex2bin',true).' （用于数据解析）</p>';
-            echo '<p>openssl_encrypt: '.checkfunc('openssl_encrypt',true).' （用于数据解析）</p>';
-        }
-        
-        echo '</body></html>';
+        echo "<center>本项目已开源，请访问<a href='https://github.com/meethigher/music-player'>音乐播放站</a></center>";
 }
 function createFolders($dir) {
     return is_dir($dir) or (createFolders(dirname($dir)) and mkdir($dir, 0755));

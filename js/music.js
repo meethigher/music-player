@@ -47,7 +47,7 @@ $(function () {
 
 
     function printDefault() {
-        console.log("@description:音乐播放器\n@author:言成言成啊\n@link:https://meethigher.top/\n@date:2019-11-11");
+        console.log("@description:音乐播放器\n@author:言成言成啊\n@link:https://meethigher.top/\n@createDate:2019-11-11");
     }
 
     /*展示与隐藏界面的方法*/
@@ -123,7 +123,7 @@ $(function () {
 
 
     function setSource(source) {
-        $source.find("span").css("backgroundImage", "url(\"images/" + source + ".ico\")");
+        $source.find("span").css("backgroundImage", "url(\"https://meethigher.top/images/" + source + ".ico\")");
     }
 
     /*绑定键盘按下按钮事件*/
@@ -215,7 +215,6 @@ $(function () {
         for (let i = 0; i < myMusicList.length; i++) {
             let value = myMusicList[i].url_id;
             if (value === obj.url_id) {
-                console.log("执行");
                 myMusicList.splice(i, 1);
                 break;
             }
@@ -257,8 +256,8 @@ $(function () {
                         currentPlayingId = $myMusicList.find("li").length - 1;
                         let $last = $($myMusicList.find("li")[currentPlayingId]);
                         playSong($last, songUrl);
+                        renderLyric(oLrc, pic);
                     }
-                    renderLyric(oLrc, pic);
                 }
                 if (count >= 15) {
                     clearInterval(time);
@@ -515,14 +514,25 @@ $(function () {
         let percent = (audio.currentTime / audio.duration) * 100;
         $(".progress .cur").css("width", percent + "%");
         $(".progress .dot").css("left", percent + "%");
-        /*/!*渲染歌词进度*!/
+        /*渲染歌词进度*/
         currentTime=audio.currentTime+1;
-        if(ii>=oLrc["ms"].length) return;
-        if(currentTime>oLrc["ms"][ii]["t"]){
-            renderLrcProcess(ii);
-            ii++;
-        }*/
+        for(let i=0;i<oLrc["ms"].length;i++){
+            if(currentTime>=oLrc["ms"][i]["t"]){
+                renderLrcProcess(i);
+            }
+        }
     };
+    function renderLrcProcess(i) {
+        let $lis=$myMusicLyric.find("li");
+        $lis.each(function (index,ele){
+            if(index<=i){
+                if(!$(ele).hasClass("played"))
+                    $(ele).addClass("played");
+            }else{
+                if($(ele).hasClass("played")) $(ele).removeClass("played");
+            }
+        });
+    }
     audio.onended = function () {
         $(".progress .cur").css("width", 0);
         $(".progress .dot").css("left", 0);
@@ -541,7 +551,6 @@ $(function () {
     function prevAndNext() {
         index = layer.load(1, {shade: [0.1, '#fff']});
         let music = myMusicList[currentPlayingId];
-        console.log(music);
         ajaxUrl(music);
         ajaxLyric(music);
         ajaxPic(music);
@@ -573,6 +582,9 @@ $(function () {
         if (audio.src === "" || audio.src === null) return;
         let percent = e.offsetX / $(this).width();
         audio.currentTime = percent * (audio.duration);
+        //歌词逻辑
+        /*ii=Math.floor(percent * (audio.duration));
+        renderLrcProcess(ii);*/
     });
     $(".volume-progress").on("click", function (e) {
         if (audio.src === "" || audio.src === null) return;

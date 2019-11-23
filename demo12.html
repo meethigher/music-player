@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery歌词同步MP3播放器代码 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
+    <style>
+        body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}.container{max-width:32rem;margin-left:auto;margin-right:auto;}h1{font-size:54px;color:#333;margin:30px 0 10px;}h2{font-size:22px;color:#555;}h3{font-size:24px;color:#555;}hr{display:block;width:7rem;height:1px;margin:2.5rem 0;background-color:#eee;border:0;}a{color:#08c;text-decoration:none;}p{font-size:18px;}
+    </style>
+</head>
+<body>
+<div id="aplayer"></div>
+<script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script>
+<script>
+    let lyric = "[ti:悬溺]\n" +
+        "    [ar:葛东琪]\n" +
+        "    [al:第二街区]\n" +
+        "    [by:]\n" +
+        "    [offset:0]\n" +
+        "    [00:01.74]悬溺 - 葛东琪\n" +
+        "        [00:02.67]词：葛东琪\n" +
+        "        [00:02.80]曲：葛东琪\n" +
+        "        [00:02.93]编曲：葛东琪\n" +
+        "        [00:03.10]录音师：葛东琪\n" +
+        "        [00:03.29]混音师：葛东琪\n" +
+        "        [00:04.17]制作人：葛东琪\n" +
+        "        [00:04.37]推广：刘维刚\n" +
+        "        [00:04.54]发行：湖南音讯影视传媒有限公司\n" +
+        "        [00:31.65]我主张制止不了就放任\n" +
+        "        [00:38.34]这欲望与绝望之争\n" +
+        "        [00:44.79]余温她却喜欢过门\n" +
+        "        [00:50.53]临走呢\n" +
+        "        [00:52.30]还随手关了灯\n" +
+        "        [00:56.59]So funny\n" +
+        "        [00:57.33]Ya i ya i ya i ya i ya i ya i ya\n" +
+        "        [01:00.46]Ya i ya i ya i ya i\n" +
+        "        [01:03.74]Ya i ya i ya i ya i ya i ya i ya\n" +
+        "        [01:06.93]It's so funny ya i ya i\n" +
+        "        [01:09.83]Ya i ya i ya i ya i ya i ya i ya\n" +
+        "        [01:14.02]Ya i ya i ya i ya i\n" +
+        "        [01:16.39]It's so funny ya i ya i ya i ya i ya\n" +
+        "        [01:20.37]Ya i ya i ya i ya i\n" +
+        "        [01:51.61]我主张克制不了就放任\n" +
+        "        [01:58.26]悬上该有的天真\n" +
+        "        [02:04.79]起伏在于喜怒哀乐\n" +
+        "        [02:10.39]松了绳\n" +
+        "        [02:12.32]大不了无人问\n" +
+        "        [02:17.11]Ya i ya i ya i ya i ya i ya i ya\n" +
+        "        [02:20.52]Ya i ya i ya i ya i\n" +
+        "        [02:23.71]Ya i ya i ya i ya i ya i ya i ya\n" +
+        "        [02:27.10]It's so funny ya i ya i\n" +
+        "        [02:30.32]Ya i ya i ya i ya i ya i ya i ya\n" +
+        "        [02:33.88]Ya i ya i ya i ya\n" +
+        "        [02:36.68]It's so funny ya i ya i ya i ya i ya\n" +
+        "        [02:40.58]Ya i ya i ya i ya\n" +
+        "        [02:42.46]有什么话要说";
+    const ap = new APlayer({
+        container: document.getElementById('aplayer'),
+        lrcType: 1,
+        audio: {
+            name: 'name',
+            artist: 'artist',
+            src: 'https://ws.stream.qqmusic.qq.com/M500000a2bMl33mXkU.mp3?guid=2096561417&vkey=DD65D5FF6CC4393116CA0B2778812DDF60255D1D775E4442FA1318CADA2905EC30742728D2C78C07A7C633A2F14F1B39DE7ABE1FDA521B5A&uin=0&fromtag=66',
+            cover: 'demo.jpg',
+            lrc: lyric
+        }
+    });
+</script>
+</body>
+</html>
