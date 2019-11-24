@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let arr=[
+        {id:1,name:"haha"},
+        {id:2,name:""},
+        {id:3,name:"gaga"},
+        {id:4,name:""},
+        {id:5,name:""},
+        {id:6,name:"gaga"},
+        {id:7,name:""}
+    ];
+    let arr2=[];
+    for(let i in arr){
+        if(arr[i]["name"]!==""){
+            arr2.push(arr[i]);
+        }
+    }
+    console.log(arr2);
+</script>
+</body>
+</html>

@@ -6,8 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>言成的个人音乐站</title>
+    <link rel="shortcut icon" href="https://meethigher.top/images/favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/css/meethigher-font.css">
-    <link rel="stylesheet" href="css/music.css">
+    <link rel="stylesheet" href="https://meethigher.top/css/music.css">
 </head>
 <body>
 <header>
@@ -28,7 +29,9 @@
     </div>
     <div id="menu2">
         <div class="search-content meethigher-scroll">
-            <ul id="myMusicLyric"><li>请选择一首歌哦，亲❤~</li></ul>
+            <ul id="myMusicLyric">
+                <li>请选择一首歌哦，亲❤~</li>
+            </ul>
         </div>
         <div class="detail">
             <div class="pic playing"></div>
@@ -64,9 +67,14 @@
         <li><span class="play-model turn"></span></li>
     </ul>
     <ul class="second clearFix">
-        <li><span class="progress"><span class="cur"></span><span class="dot"></span></span></li>
-        <li class="volume"><span class="volume-bar on"></span>&nbsp;<span class="volume-progress"><span class="cur"></span><span
-                class="dot"></span></span></span></li>
+        <li><span class="progress"><span class="cur"></span></span></li>
+        <li class="volume">
+            <span class="volume-bar on"></span>
+            &nbsp;
+            <span class="volume-progress">
+                <span class="cur"></span>
+            </span>
+        </li>
     </ul>
 </footer>
 <aside class="aside"></aside>
@@ -76,10 +84,11 @@
 <script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/layer/layer.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/template-web.js"></script>
-<script src="js/music.js"></script>
+<script src="https://meethigher.top/js/music.js"></script>
 <script id="template" type="text/html">
     <% for(let i = 0; i < content.length; i++){ %>
-    <li><span class="num"></span><span class="song"><%=content[i].name%></span><span class="singer"><%=content[i].artist[0]%></span></li>
+    <li><span class="num"></span><span class="song"><%=content[i].name%></span><span class="singer"><%=content[i].artist[0]%></span>
+    </li>
     <% } %>
 </script>
 </body>

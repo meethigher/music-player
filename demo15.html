@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .progress {
+            position: relative;
+            width: 500px;
+            margin: 0 auto;
+            height: 10px;
+            background-color: orange;
+        }
+
+        .cur {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10%;
+            height: 10px;
+            background-color: pink;
+        }
+
+        .dot {
+            position: absolute;
+            top: -2px;
+            left: 10%;
+            width: 15px;
+            height: 15px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="progress">
+    <div class="cur"></div>
+</div>
+<button>播放/暂停</button>
+</body>
+<script src="https://cdn.jsdelivr.net/gh/meethigher/cdn@11/js/jquery.min.js"></script>
+<script>
+    let audio=new Audio();
+    audio.src="http://fs.ios.kugou.com/201911241126/fea78330e63d7226c987d127aab689ed/G176/M05/14/11/UIcBAF3TNNOAb2t2ADinB1BZZm4366.mp3";
+    audio.loop=false;
+    $(".progress").on("click", function (e) {
+        console.log($(this));
+        let percent = e.offsetX / $(".progress").width();
+        audio.currentTime=percent*audio.duration;
+    });
+    audio.ontimeupdate=function (){
+        let percent=audio.currentTime/audio.duration;
+        $(".cur").width(percent*100+"%");
+    };
+    $("button").on("click",function (){
+        if(audio.paused){
+            audio.play();
+        }else{
+            audio.pause();
+        }
+    });
+</script>
+</html>
