@@ -46,3 +46,5 @@
 #### 项目演示
 
 [演示地址](https://meethigher.top/music)
+
+注意：音乐在chrome80+以上版本，会出现无法播放的情况，这是chrome自身的原因。chrome80+以后，音视频强制转换https，导致一些http的资源无法访问的情况
