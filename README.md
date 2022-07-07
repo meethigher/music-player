@@ -1,3 +1,7 @@
+> 截至2022年7月7日
+>
+> 腾讯QQ的api解析失效，api修改了。由于对方可能集群部署的原因，有的节点应该没更新，会时好时坏
+
 #### 项目名称
 
 [在线音乐播放器](https://github.com/meethigher/music-player)<本项目已开源>
@@ -5,11 +9,13 @@
 #### 感谢大佬
 
 * [孟坤](https://mkblog.cn/)
-* [metowolf](https://i-meto.com/)
+* [metowolf](https://i-meto.com/)-[metowolf/Meting: Wow, such a powerful music API framework](https://github.com/metowolf/Meting)
 
 #### 项目环境
 
-运行环境：php 7.2+（开启扩展 curl_exec, file_get_contents, json_decode, openssl_encrypt ）
+运行环境：php 7.2+（开启扩展 curl，openssl ）
+
+![](https://meethigher.top/blog/2022/win-to-centos/4.jpg)
 
 #### 兼容性
 
