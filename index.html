@@ -87,7 +87,7 @@
 <script src="https://meethigher.top/js/music.js"></script>
 <script id="template" type="text/html">
     <% for(let i = 0; i < content.length; i++){ %>
-    <li><span class="num"></span><span class="song"><%=content[i].name%></span><span class="singer"><%=content[i].artist[0]%></span>
+    <li><span class="num"></span><span class="song"><%=content[i].name%></span><span class="singer"><%=content[i].artist.join('/')%></span>
     </li>
     <% } %>
 </script>
