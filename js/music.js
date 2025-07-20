@@ -567,7 +567,7 @@ $(function () {
         let $this = $(this);
         if (myMusicList.length === 0) {
             layer.msg("你的歌单里暂时没有东西哦，亲❤~");
-            return
+            return;
         }
         let song = $this.find(".song").text();
         let singer = $this.find(".singer").text();
@@ -575,25 +575,12 @@ $(function () {
         currentPlayingId = $this.find(".num").text() - 1;
         let music = myMusicList[currentPlayingId];
         ajaxUrl(music);
-        ajaxLyric(music);
-        ajaxPic(music);
-        layer.confirm(string, {title: false, btn: ['播放', '分享'], closeBtn: true}, function () {
-            index = layer.load(1, {shade: [0.1, '#fff']});
-            let count = 1;
-            let time = setInterval(function () {
-                count++;
-                if (!ajaxing) {
-                    clearInterval(time);
-                    layer.close(index);
-                    playSong($this, songUrl);
-                    renderLyric(oLrc, pic, song, singer)
-                }
-                if (count >= 15) {
-                    clearInterval(time);
-                    layer.close(index);
-                    layer.msg("超时，请检查网络哦，亲❤~")
-                }
-            }, 200)
+        ajaxLyric(music);//获取后的值给oLrc
+        ajaxPic(music);//获取后的值给pic
+        layer.confirm(string, {
+            title: false,
+            btn: ['播放', '其他'],
+            closeBtn: true
         }, function () {
             index = layer.load(1, {shade: [0.1, '#fff']});
             let count = 1;
@@ -602,16 +589,58 @@ $(function () {
                 if (!ajaxing) {
                     clearInterval(time);
                     layer.close(index);
-                    shareSong(songUrl)
+                    playSong($this, songUrl);
+                    renderLyric(oLrc, pic, song, singer);
                 }
                 if (count >= 15) {
                     clearInterval(time);
                     layer.close(index);
-                    layer.msg("超时，请检查网络哦，亲❤~")
+                    layer.msg("超时，请检查网络哦，亲❤~");
                 }
-            }, 200)
-        })
+            }, 200);
+        }, function () {
+            layer.msg('分享 or 删除', {
+                time: 0, //不自动关闭
+                btn: ['分享', '删除'],
+                yes: function (index) {
+                    layer.close(index);
+                    index = layer.load(1, {shade: [0.1, '#fff']});
+                    let count = 1;
+                    let time = setInterval(function () {
+                        count++;
+                        if (!ajaxing) {
+                            clearInterval(time);
+                            layer.close(index);
+                            shareSong(songUrl);
+                        }
+                        if (count >= 15) {
+                            clearInterval(time);
+                            layer.close(index);
+                            layer.msg("超时，请检查网络哦，亲❤~");
+                        }
+                    }, 200);
+                },
+                btn2: function (index) {
+                    layer.close(index);
+                    removeData(currentPlayingId);
+                    console.log(myMusicList);
+                    renderMusicList();
+                    window.localStorage.setItem("myMusicList", JSON.stringify(myMusicList));
+                }
+            });
+
+
+        });
+
+
     });
+
+    function removeData(index) {
+        console.log(index);
+        let ts = myMusicList.splice(index,1);
+        console.log(ts);
+    }
+
 
     function renderMusicList() {
         $myMusicList.html("<div><span class=\"num\"></span><span class=\"song\">歌曲</span><span class=\"singer\">歌手</span></div>");
